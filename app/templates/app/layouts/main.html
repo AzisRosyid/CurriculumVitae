@@ -1,0 +1,196 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <title>CV & Portfolio | Azis Rosyid</title>
+  </head>
+  <body id="home">
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img
+            src="{% static 'main/navbar-logo.png' %}"
+            class="rounded-circle"
+            alt=""
+            width="35"
+            height="35"
+            class="d-inline-block align-text-top"
+          />
+          Azis Rosyid
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#detail">Detail</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Akhir Navbar -->
+
+    <main>
+          {% block content %}
+          {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center pb-5">
+      <p>
+        Created by
+        <a
+          href="https://github.com/AzisRosyid"
+          class="text-light fw-bold"
+          target="_blank"
+          >Azis Rosyid</a
+        >
+      </p>
+    </footer>
+    <!-- Akhir Footer -->
+
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script>
+      VANTA.NET({
+        el: "#home",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x999999,
+        backgroundColor: 0x212529,
+        maxDistance: 19.0,
+        spacing: 14.0,
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+      var options = {
+        series: [
+          {
+            name: "Skill",
+            data: [60, 60, 70, 70, 30, 80],
+          },
+        ],
+        chart: {
+          height: 500,
+          type: "radar",
+        },
+        dataLabels: {
+          enabled: true,
+        },
+        plotOptions: {
+          radar: {
+            size: 220,
+            polygons: {
+              strokeColors: "#e9e9e9",
+              fill: {
+                colors: ["#f8f8f8", "#fff"],
+              },
+            },
+          },
+        },
+        title: {
+          text: "",
+        },
+        colors: ["#000"],
+        markers: {
+          size: 4,
+          colors: ["#fff"],
+          strokeColor: "#000",
+          strokeWidth: 2,
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return val;
+            },
+          },
+        },
+        xaxis: {
+          categories: [
+            "Javascript",
+            "Java",
+            "C#",
+            "PHP & Laravel",
+            "Python & Django",
+            "HTML5 & CSS3",
+          ],
+        },
+        yaxis: {
+          tickAmount: 6,
+          labels: {
+            formatter: function (val, i) {
+              if (i % 2 === 0) {
+                return val;
+              } else {
+                return "";
+              }
+            },
+          },
+        },
+      };
+
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
+    </script>
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script>
+      $(".bar").each(function () {
+        $(this)
+          .find(".bar-inner")
+          .animate(
+            {
+              width: $(this).attr("data-width"),
+            },
+            2000
+          );
+      });
+    </script>
+  </body>
+</html>
